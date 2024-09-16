@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using SalesWebMvc1.Models;
+using SalesWebMvc4.Models;
 using SalesWebMvc4.Data;
 
 namespace SalesWebMvc4.Controllers
