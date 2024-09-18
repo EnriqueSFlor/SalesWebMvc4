@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SalesWebMvc4.Data;
+using SalesWebMvc4.Services;
 
 namespace SalesWebMvc4
 {
@@ -39,14 +40,21 @@ namespace SalesWebMvc4
             services.AddDbContext<SalesWebMvc4Context>(options =>
                options.UseMySql(Configuration.GetConnectionString("SalesWebMvc4Context"), builder =>
                builder.MigrationsAssembly("SalesWebMvc4")));
+
+
+            services.AddScoped<SeedingService>();
+            services.AddScoped <SellerService>();
+            services.AddScoped<DepartmentService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, SeedingService seedingService)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                seedingService.Seed();
             }
             else
             {
